@@ -17,7 +17,8 @@ users_to_alert = foo@bar.com,boo@baz.com
 ```
 
 ## Run
-`python main.py`
+You need to be root!
+`sudo python main.py`
 
 ## Cron
 You're going to want to set up a cron to run this every `x` minutes!
