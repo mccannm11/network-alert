@@ -1,59 +1,25 @@
-import subprocess
 import smtplib
+import ConfigParser
+from scanner import Scanner
 
-def machine_is_known(mac):
-  return mac in known_machines
+config = ConfigParser.RawConfigParser()
+config.read('config.cfg')
 
-def name_for_mac(mac):
-  for m in all_machines:
-    if m[1] == mac:
-      return m[2]
-  return ""
-
-def ip_for_mac(mac):
-  for m in all_machines:
-    if m[1] == mac:
-      return m[0]
-  return ""
-
-x = subprocess.check_output(["arp-scan","--interface=eth0", "--localnet"])
-arr = x.strip().split('\n')
-
-arr.pop()
-arr.pop()
-arr.pop()
-arr = arr[2:]
-
-all_machines = []
-
-for line in arr:
-  all_machines.append(line.split('\t')) #ip\tmac address\tname
-
-known_machines_file = open('/home/pi/network-alert/known_machines', 'a+')
-known_machines = known_machines_file.read().strip().split('\n')
-
-message = ""
-
-print "matches"
-for c in all_machines:
-  mac = c[1]
-  if not machine_is_known(mac):
-    message = message + "\n MAC: " + mac + ", NAME: " + name_for_mac(mac) + ", IP: " + ip_for_mac(mac)
-    known_machines_file.write(mac + '\n')
+KNOWN_MACHINES_FILE = config.get('config', 'known_machines_file')
+INTERFACE = config.get('config', 'interface')
+SMTP_SERVER = config.get('config', 'smtp_server')
+ALERTING_USER = config.get('config', 'alerting_user')
+USERS_TO_ALERT = config.get('config', 'users_to_alert').split(',')
 
 
-if len(message) > 0:
-  smtp = smtplib.SMTP('localhost')
-  smtp.sendmail('network-alert@michael.mccanns.org', ['mccannmike11@gmail.com'], str(message) )
+s = Scanner(KNOWN_MACHINES_FILE, INTERFACE)
+alert = ""
+
+for m in s.unknown_machines:
+  alert = alert + "\n MAC: " + m['mac'] + " Name: " + m['name'] + " IP: "+ m['ip']
+  s.add_to_known_machines(m['mac'])
+
+if len(alert) > 0:
+  smtp = smtplib.SMTP(SMTP_SERVER)
+  smtp.sendmail(ALERTING_USER, USERS_TO_ALERT, str(alert))
   smtp.quit()
-
-
-known_machines_file.close()
-
-
-
- 
-
-
-  
-
