@@ -32,18 +32,11 @@ for line in arr:
 known_machines_file = open('/home/pi/network-alert/known_machines', 'a+')
 known_machines = known_machines_file.read().strip().split('\n')
 
-print "Known Machines"
-print known_machines
-
-print "Discovered Machines"
-print all_machines
-
 message = ""
 
 print "matches"
 for c in all_machines:
   mac = c[1]
-  print machine_is_known(mac)
   if not machine_is_known(mac):
     message = message + "\n MAC: " + mac + ", NAME: " + name_for_mac(mac) + ", IP: " + ip_for_mac(mac)
     known_machines_file.write(mac + '\n')
