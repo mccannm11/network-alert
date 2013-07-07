@@ -17,7 +17,7 @@ class Scanner(object):
   def filter_unknown_machines(self):
     result = []
     for machine in self.all_machines:
-      if not self.machine_is_known(machine):
+      if not self.machine_is_known(machine['mac']):
         result.append(machine)
     return result
 
