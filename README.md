@@ -16,6 +16,8 @@ alerting_user = network-alert@localhost
 users_to_alert = foo@bar.com,boo@baz.com
 ```
 
+## Run
+`python main.py`
 
 ## Cron
 You're going to want to set up a cron to run this every `x` minutes!
