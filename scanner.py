@@ -1,16 +1,17 @@
 import subprocess
 
 class Scanner(object):
-  def __init__(self, file_name, interface):
+  def __init__(self, file_name, interface, path):
     self.file_name = file_name
     self.interface = interface
 
+  def scan(self):
     self.known_machines = self.read_known_machines()
     self.all_machines = self.scan_all_machines()
     self.unknown_machines = self.filter_unknown_machines()
 
   def add_to_known_machines(self, mac):
-    file = open('./' + self.file_name, 'a+')
+    file = open(self.file_name, 'a+')
     file.write(mac + "\n")
     file.close()
 
@@ -22,7 +23,7 @@ class Scanner(object):
     return result
 
   def read_known_machines(self):
-    known_machines_file = open('./' + self.file_name, 'a+')
+    known_machines_file = open(self.file_name, 'a+')
     known = known_machines_file.read().strip().split('\n')
     known_machines_file.close()
     return known
