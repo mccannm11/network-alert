@@ -25,5 +25,5 @@ for m in s.unknown_machines:
 
 if len(alert) > 0:
   smtp = smtplib.SMTP(SMTP_SERVER)
-  smtp.sendmail(ALERTING_USER, USERS_TO_ALERT, str(alert))
+  smtp.sendmail(ALERTING_USER, USERS_TO_ALERT, alert)
   smtp.quit()
