@@ -20,10 +20,10 @@ s.scan()
 
 alert = ""
 for m in s.unknown_machines:
-  alert = alert + "\n MAC: " + m['mac'] + " Name: " + m['name'] + " IP: "+ m['ip']
-  s.add_to_known_machines(m['mac'])
+    alert = alert + "\n MAC: " + m['mac'] + " Name: " + m['name'] + " IP: "+ m['ip']
+    s.add_to_known_machines(m['mac'])
 
 if len(alert) > 0:
-  smtp = smtplib.SMTP(SMTP_SERVER)
-  smtp.sendmail(ALERTING_USER, USERS_TO_ALERT, alert)
-  smtp.quit()
+    smtp = smtplib.SMTP(SMTP_SERVER)
+    smtp.sendmail(ALERTING_USER, USERS_TO_ALERT, alert)
+    smtp.quit()
