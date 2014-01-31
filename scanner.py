@@ -16,11 +16,8 @@ class Scanner(object):
         file.close()
 
     def filter_unknown_machines(self):
-        result = []
-        for machine in self.all_machines:
-            if not self.machine_is_known(machine['mac']):
-                result.append(machine)
-        return result
+        return [m for m in self.all_machines if not self.machine_is_known(m['mac'])]
+
 
     def read_known_machines(self):
         known_machines_file = open(self.file_name, 'a+')
@@ -42,8 +39,4 @@ class Scanner(object):
         return all_machines
 
     def machine_array_to_hash(self, array):
-        hash = {}
-        hash['ip'] = array[0]
-        hash['mac'] = array[1]
-        hash['name'] = array[2]
-        return hash
+        return dict(zip(['ip', 'mac', 'name'], array))
