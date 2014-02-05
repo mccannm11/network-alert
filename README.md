@@ -1,4 +1,6 @@
-#network-alert
+network-alert
+=============
+[![Build Status](https://travis-ci.org/mccannm11/network-alert.png?branch=master)](https://travis-ci.org/mccannm11/network-alert)
 
 A little python script script to send alert emails when a new computer connects to your network.
 
