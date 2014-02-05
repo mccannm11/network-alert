@@ -3,3 +3,5 @@ config.cfg
 *.pyc
 .coverage
 network_alert.egg-info
+build
+dist
