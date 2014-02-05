@@ -16,7 +16,7 @@ class Scanner(object):
         all_devices = []
         for line in arr: #ip\tmac address\tname
             all_devices.append(self.device_array_to_hash(line.split('\t')))
-        return all_machines
+        return all_devices
 
     def device_array_to_hash(self, array):
         return dict(zip(['ip', 'mac', 'name'], array))
