@@ -18,7 +18,10 @@ users_to_alert = foo@bar.com,boo@baz.com
 
 ## Run
 You need to be root!
-`sudo python main.py`
+`sudo python network_alert {learn, alert, known, unknown}`
+
+## Run tests
+`python setup.py test`
 
 ## Cron
 You're going to want to set up a cron to run this every `x` minutes!
