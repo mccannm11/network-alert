@@ -3,6 +3,8 @@ from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 import os
 import sys
+import pytest_cov
+import multiprocessing
 
 import network_alert
 
@@ -14,7 +16,7 @@ requires = ['pytest']
 class PyTest(TestCommand):
     def finalize_options(self):
         TestCommand.finalize_options(self)
-        self.test_args = ['--strict', '--verbose', 'test']
+        self.test_args = ['--strict', '--verbose', 'test', '--cov=network_alert']
         self.test_suite = True
 
     def run_tests(self):
