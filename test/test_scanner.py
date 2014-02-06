@@ -1,3 +1,4 @@
+import os
 import unittest
 from network_alert import Scanner
 from .static import raw_arp_scan_output, parsed_arp_scan_output
@@ -17,15 +18,13 @@ class TestScanner(unittest.TestCase):
         self.assertEqual(hash['name'], 'Computer')
 
     def test_run_subprocess(self):
-        return
-        # @TODO: figure out how to bundle apr-scan dependency with package so tests can run on CI
-        self.assertNotEqual(self.scanner.run_subprocess(), None)
+        if not 'TRAVIS' in os.environ:
+            self.assertNotEqual(self.scanner.run_subprocess(), None)
 
     def test_parse_devices(self):
         self.assertEqual(self.scanner.parse_devices(raw_arp_scan_output), parsed_arp_scan_output)
 
     def test_scan(self):
-        return
-        ## @TODO: see above
-        self.scanner.scan()
-        self.assertNotEqual(self.scanner.devices, None)
+        if not 'TRAVIS' in os.environ:
+            self.scanner.scan()
+            self.assertNotEqual(self.scanner.devices, None)
