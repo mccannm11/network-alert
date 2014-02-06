@@ -1,7 +1,6 @@
+import unittest
 from network_alert import Mailer
 
-import unittest
-import network_alert
 
 SERVER = 'localhost'
 RECIPIENTS = 'test@test.com'
