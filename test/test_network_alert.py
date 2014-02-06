@@ -1,7 +1,0 @@
-""" Tests for network_alert """
-import pytest
-
-class TestNetworkAlert(object):
-	def test_one(self):
-		x = "this"
-		assert 'h' in x
