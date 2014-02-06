@@ -1,12 +1,12 @@
+import os
 import unittest
 from network_alert import Persistance
-
-import os
 
 FILE = "test_data"
 test_data = ['t1', 't2', 't3', 't4']
 
 class TestPersistance(unittest.TestCase):
+
 	def setUp(self):
 		self.persistance = Persistance(FILE)
 
