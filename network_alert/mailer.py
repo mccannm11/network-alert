@@ -1,6 +1,7 @@
 import smtplib
 
 class Mailer(object):
+
     def __init__(self, server, recipients, sender):
         self.server = server
         self.recipients = recipients
@@ -18,8 +19,5 @@ class Mailer(object):
         return True
 
     def build_message(self, macs):
-        alert = ""
-        for m in macs:
-            alert = alert + "\n MAC: " + m['mac'] + " Name: " + m['name']\
-            + " IP: "+ m['ip']
-        return alert
+        message = ["\n MAC: %s Name: %s IP: %s" % (m['mac'], m['name'], m['ip']) for m in macs]
+        return "".join(message)

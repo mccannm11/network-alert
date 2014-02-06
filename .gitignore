@@ -1,5 +1,4 @@
 known_machines
-config.cfg
 *.pyc
 .coverage
 network_alert.egg-info
