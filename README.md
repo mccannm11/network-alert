@@ -6,21 +6,19 @@ A little python script script to send alert emails when a new computer connects 
 
 ## Install
 `git clone git@github.com:mccannm11/network-alert`
-
-## Configure
-Rename the config.example.cfg file to config.cfg and modify the values to your liking:
-
-```
-interface = wlan0
-known_machines_file = known_machines
-smtp_server = localhost
-alerting_user = network-alert@localhost
-users_to_alert = foo@bar.com,boo@baz.com
-```
+`python setup.py test`
+`python setup.py install`
 
 ## Run
 You need to be root!
-`sudo python network_alert {learn, alert, known, unknown}`
+`nalert {learn, alert, known, unknown, clear}`
+
+## Commands
+* learn: saves the mac addresses found on our network to file.
+* alert: sends you an email if unknown devices are found. Also performs a learn.
+* known: lists known devices.
+* unknown: lists unknown devices if any.
+* all: lists all devices currently on the network.
 
 ## Run tests
 `python setup.py test`
