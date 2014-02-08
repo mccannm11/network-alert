@@ -4,7 +4,7 @@
 import os
 import sys
 from ConfigParser import RawConfigParser
-from network_alert import Scanner, Mailer, Persistance, KNOWN_MACHINES_FILE,
+from network_alert import Scanner, Mailer, Persistance, KNOWN_MACHINES_FILE
 from network_alert import INTERFACE, SMTP_SERVER, ALERTING_USER, USERS_TO_ALERT
 
 
