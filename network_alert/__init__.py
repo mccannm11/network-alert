@@ -4,7 +4,7 @@ from network_alert.mailer import Mailer
 from network_alert.version import VERSION, VERSION_STRING
 
 __all__ = [
-	'Scanner', 'Persistance', 'Mailer', 'VERSION', 'VERSION_STRING'
+    'Scanner', 'Persistance', 'Mailer', 'VERSION', 'VERSION_STRING'
 ]
 
 #@TODO Load this configuration from an external file

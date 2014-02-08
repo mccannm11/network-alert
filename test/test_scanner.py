@@ -5,6 +5,7 @@ from .static import raw_arp_scan_output, parsed_arp_scan_output
 
 INTERFACE = 'wlan0'
 
+
 class TestScanner(unittest.TestCase):
 
     def setUp(self):
@@ -22,7 +23,8 @@ class TestScanner(unittest.TestCase):
             self.assertNotEqual(self.scanner.run_subprocess(), None)
 
     def test_parse_devices(self):
-        self.assertEqual(self.scanner.parse_devices(raw_arp_scan_output), parsed_arp_scan_output)
+        self.assertEqual(
+            self.scanner.parse_devices(raw_arp_scan_output), parsed_arp_scan_output)
 
     def test_scan(self):
         if not 'TRAVIS' in os.environ:

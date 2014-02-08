@@ -5,6 +5,7 @@ SERVER = 'localhost'
 RECIPIENTS = 'test@test.com'
 SENDER = 'sender@sender.com'
 
+
 class TestMailer(unittest.TestCase):
 
     def setUp(self):
@@ -15,9 +16,9 @@ class TestMailer(unittest.TestCase):
 
     def test_build_message(self):
         message = self.mailer.build_message([{
-                'mac':'mac',
-                'ip': '123',
-                'name': 'name',
-            }])
+            'mac': 'mac',
+            'ip': '123',
+            'name': 'name',
+        }])
 
         assert message == "\n MAC: mac Name: name IP: 123"

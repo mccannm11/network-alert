@@ -14,10 +14,13 @@ here = os.path.abspath(os.path.dirname(__file__))
 packages = ['network_alert']
 requires = ['pytest']
 
+
 class PyTest(TestCommand):
+
     def finalize_options(self):
         TestCommand.finalize_options(self)
-        self.test_args = ['--strict', '--verbose', 'test', '--cov=network_alert']
+        self.test_args = ['--strict', '--verbose',
+                          'test', '--cov=network_alert']
         self.test_suite = True
 
     def run_tests(self):
@@ -30,7 +33,8 @@ setup(name='network_alert',
       description='Discover new machines on your network.',
       author='Mike McCann',
       cmdclass={'test': PyTest},
-      entry_points={'console_scripts': ['nalert = network_alert.commands:main']},
+      entry_points={'console_scripts':
+                    ['nalert = network_alert.commands:main']},
       packages=packages,
       package_dir={'network_alert': 'network_alert'},
-)
+      )
