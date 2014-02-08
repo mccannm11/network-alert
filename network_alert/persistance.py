@@ -1,7 +1,10 @@
+import os
+
+
 class Persistance(object):
 
     def __init__(self, filename):
-        self.filename = filename
+        self.filename = os.path.expanduser('~/' + filename)
 
     def save(self, mac):
         if mac not in self.all():

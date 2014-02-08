@@ -8,7 +8,7 @@ __all__ = [
 ]
 
 #@TODO Load this configuration from an external file
-KNOWN_MACHINES_FILE = '~/.nalert_known_machines'
+KNOWN_MACHINES_FILE = '.nalert_known_machines'
 INTERFACE = 'wlan0'
 SMTP_SERVER = 'localhost'
 ALERTING_USER = 'network-alert@michael.mccanns.org'
