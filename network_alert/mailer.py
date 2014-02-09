@@ -8,18 +8,18 @@ class Mailer(object):
         self.recipients = recipients
         self.sender = sender
 
-    def send_warning_message(self, macs):
-        if len(macs) is 0:
+    def send_warning_message(self, devices):
+        if len(devices) is 0:
             return False
 
-        message = self.build_message(macs)
+        message = self.build_message(devices)
         smtp = smtplib.SMTP(self.server)
 
         smtp.sendmail(self.sender, self.recipients, message)
         smtp.quit()
         return True
 
-    def build_message(self, macs):
+    def build_message(self, devices):
         message = ["\n MAC: %s Name: %s IP: %s" %
-                   (m['mac'], m['name'], m['ip']) for m in macs]
+                   (d['mac'], d['name'], d['ip']) for d in devices]
         return "".join(message)

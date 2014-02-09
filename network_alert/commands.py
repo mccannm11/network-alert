@@ -29,7 +29,7 @@ class NetworkAlert(object):
 
     # lists unknown devices on the network
     def unknown(self):
-        return [m for m in self.all() if m['mac'] not in self.known()]
+        return [m for m in self.all() if m not in self.known()]
 
     # lists known devices on the network
     def known(self):
