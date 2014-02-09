@@ -38,8 +38,8 @@ class NetworkAlert(object):
     # scans the network for all devices and adds them
     # the the list of known devices
     def learn(self):
-        for m in self.scanner.devices:
-            self.persistance.save(m['mac'])
+        for device in self.scanner.devices:
+            self.persistance.save(device)
 
     # sends an email to users if an unknown device is found on the network,
     # also adds devices as known

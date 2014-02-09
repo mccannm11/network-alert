@@ -24,7 +24,9 @@ class TestScanner(unittest.TestCase):
 
     def test_parse_devices(self):
         self.assertEqual(
-            self.scanner.parse_devices(raw_arp_scan_output), parsed_arp_scan_output)
+            self.scanner.parse_devices(raw_arp_scan_output),
+            parsed_arp_scan_output
+        )
 
     def test_scan(self):
         if not 'TRAVIS' in os.environ:
