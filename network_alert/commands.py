@@ -21,7 +21,11 @@ class NetworkAlert(object):
             return
         else:
             self.scanner.scan()
-            print getattr(self, args[0])()
+            try:
+                print getattr(self, args[0])()
+            except AttributeError:
+                print_help()
+                return
 
     # lists unknown devices on the network
     def unknown(self):
