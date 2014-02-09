@@ -3,12 +3,14 @@
 
 import os
 import sys
+import time
 from ConfigParser import RawConfigParser
 from network_alert import Scanner, Mailer, Persistance, KNOWN_MACHINES_FILE
 from network_alert import INTERFACE, SMTP_SERVER, ALERTING_USER, USERS_TO_ALERT
 
 
 class NetworkAlert(object):
+    SCAN_INTERVAL = 60 * 5
 
     def __init__(self):
         self.scanner = Scanner(INTERFACE)
@@ -48,11 +50,18 @@ class NetworkAlert(object):
     # sends an email to users if an unknown device is found on the network,
     # also adds devices as known
     def alert(self):
-        self.mailer.send_warning_message(self.scanner.devices)
+        self.mailer.send_warning_message(self.unknown())
         self.learn()
 
     def reset(self):
         self.persistance.clear()
+
+    # chacks every 5 minutes for new connections and runs alert
+    def watch(self):
+        print "Network Alert Watch Started"
+        while True:
+            self.alert()
+            time.sleep(self.SCAN_INTERVAL)
 
     def print_help():
         print """
