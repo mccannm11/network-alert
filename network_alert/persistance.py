@@ -24,5 +24,4 @@ class Persistance(object):
         return devices
 
     def clear(self):
-        with open(self.filename, 'w') as f:
-            pass
+        open(self.filename, 'w').close()
