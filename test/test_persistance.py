@@ -26,6 +26,8 @@ class TestPersistance(unittest.TestCase):
     def test_all(self):
         [self.persistance.save(d) for d in test_data]
         assert 't1' in self.persistance.all()
+        assert 't2' in self.persistance.all()
+        assert 't3' in self.persistance.all()
 
     def test_clear(self):
         [self.persistance.save(d) for d in test_data]
