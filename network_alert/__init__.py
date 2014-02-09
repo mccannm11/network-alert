@@ -1,3 +1,4 @@
+import os
 from network_alert.scanner import Scanner
 from network_alert.persistance import Persistance
 from network_alert.mailer import Mailer
@@ -8,7 +9,7 @@ __all__ = [
 ]
 
 #@TODO Load this configuration from an external file
-KNOWN_MACHINES_FILE = '.nalert_known_machines'
+KNOWN_MACHINES_FILE = os.path.expanduser('~/.nalert_known_machines')
 INTERFACE = 'wlan0'
 SMTP_SERVER = 'localhost'
 ALERTING_USER = 'network-alert@michael.mccanns.org'

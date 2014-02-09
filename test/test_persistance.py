@@ -2,7 +2,7 @@ import os
 import unittest
 from network_alert import Persistance
 
-FILE = "test_data"
+FILE = os.path.expanduser("~/test_data")
 test_data = [
     {'mac': 't1', 'ip': 'i1', 'name': 'n1'},
     {'mac': 't2', 'ip': 'i2', 'name': 'n2'},

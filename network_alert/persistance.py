@@ -1,22 +1,19 @@
-import os
-
-
 class Persistance(object):
     DELIMITER = '\t'
 
-    def __init__(self, filename):
-        self.filename = os.path.expanduser('~/' + filename)
+    def __init__(self, file):
+        self.file = file
 
     def save(self, device):
         if device not in self.all():
-            with open(self.filename, 'a+') as f:
+            with open(self.file, 'a+') as f:
                 line = self.DELIMITER.join(
                     [device['mac'], device['ip'], device['name']]
                 )
                 f.write(line + '\n')
 
     def all(self):
-        with open(self.filename, 'a+') as f:
+        with open(self.file, 'a+') as f:
             devices = [d.split('\t')[0] for d in f.read().strip().split('\n')]
 
         # ensure no empty entries
@@ -24,4 +21,4 @@ class Persistance(object):
         return devices
 
     def clear(self):
-        open(self.filename, 'w').close()
+        open(self.file, 'w').close()
