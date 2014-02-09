@@ -12,12 +12,20 @@ class Persistance(object):
                 )
                 f.write(line + '\n')
 
+    def all_macs(self):
+        return [d['mac'] for d in self.all()]
+
+
     def all(self):
         with open(self.file, 'a+') as f:
-            devices = [d.split('\t')[0] for d in f.read().strip().split('\n')]
+            parse = lambda line: dict(
+                zip(['mac', 'ip', 'name'], line.split(self.DELIMITER))
+            )
+
+            devices = [parse(d) for d in f.read().strip().split('\n')]
 
         # ensure no empty entries
-        devices = [d for d in devices if len(d) > 0]
+        devices = [d for d in devices if len(d['mac']) > 0]
         return devices
 
     def clear(self):

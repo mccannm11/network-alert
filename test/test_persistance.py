@@ -20,14 +20,16 @@ class TestPersistance(unittest.TestCase):
             os.remove(FILE)
 
     def test_save(self):
-        self.persistance.save({'mac': 'mac', 'ip': 'ip', 'name': 'name'})
-        assert 'mac' in self.persistance.all()
+        device_data = {'mac': 'mac', 'ip': 'ip', 'name': 'name'}
+        self.persistance.save(device_data)
+        assert device_data in self.persistance.all()
 
-    def test_all(self):
+    def test_all_macs(self):
         [self.persistance.save(d) for d in test_data]
-        assert 't1' in self.persistance.all()
-        assert 't2' in self.persistance.all()
-        assert 't3' in self.persistance.all()
+        macs = self.persistance.all_macs()
+        assert 't1' in macs
+        assert 't2' in macs
+        assert 't3' in macs
 
     def test_clear(self):
         [self.persistance.save(d) for d in test_data]
