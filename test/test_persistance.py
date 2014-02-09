@@ -3,6 +3,7 @@ import unittest
 from network_alert import Persistance
 
 FILE = os.path.expanduser("~/test_data")
+
 test_data = [
     {'mac': 't1', 'ip': 'i1', 'name': 'n1'},
     {'mac': 't2', 'ip': 'i2', 'name': 'n2'},
@@ -24,14 +25,23 @@ class TestPersistance(unittest.TestCase):
         self.persistance.save(device_data)
         assert device_data in self.persistance.all()
 
+    def test_all(self):
+        for t in test_data:
+            self.persistance.save(t)
+
+        for t in test_data:
+            assert t in self.persistance.all()
+
     def test_all_macs(self):
-        [self.persistance.save(d) for d in test_data]
-        macs = self.persistance.all_macs()
-        assert 't1' in macs
-        assert 't2' in macs
-        assert 't3' in macs
+        for t in test_data:
+            self.persistance.save(t)
+
+        for t in [m['mac'] for m in test_data]:
+            assert t in self.persistance.all_macs()
 
     def test_clear(self):
-        [self.persistance.save(d) for d in test_data]
+        for t in test_data:
+            self.persistance.save(t)
+
         self.persistance.clear()
         assert len(self.persistance.all()) == 0
