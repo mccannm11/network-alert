@@ -5,9 +5,11 @@ network-alert
 A little python script script to send alert emails when a new computer connects to your network.
 
 ## Install
-`git clone git@github.com:mccannm11/network-alert`
-`python setup.py test`
-`python setup.py install`
+    apt-get install python-dev
+    git clone https://github.com:mccannm11/network-alert.git
+    cd network-alert
+    python setup.py test
+    python setup.py install
 
 ## Run
 You need to be root!
